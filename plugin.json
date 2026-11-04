@@ -1,0 +1,15 @@
+{
+  "id": "neteaseLyrics",
+  "name": "网易云音乐",
+  "description": "从网易云音乐获取逐行同步歌词",
+  "version": "1.0.0",
+  "author": "mijiaoqvq",
+  "type": "lyrics",
+  "requires_dms": ">=2.0.0",
+  "lyrics": {
+    "command": "./fetch.py",
+    "name": "网易云音乐",
+    "url": "https://music.163.com/",
+    "wordSync": false
+  }
+}

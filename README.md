@@ -23,7 +23,7 @@ git clone https://github.com/mijiaoqvq/dms-netease-lyrics.git "$plugin_dir"
 For a manual installation, copy `plugin.json` and `fetch.py` into that directory and run `chmod +x "$plugin_dir/fetch.py"`.
 
 1. Open **Settings → Plugins**, click **Scan**, then enable **NetEase Cloud Music Lyrics**.
-2. Open **Settings → Sound & media → Media player → Lyrics providers** and turn on **网易云音乐**.
+2. Open **Settings → Sound & media → Media player → Lyrics providers** and turn on **NetEase Cloud Music**.
 3. Drag the entry to your preferred priority. Switch tracks to trigger another lookup.
 
 ## How matching works
@@ -34,6 +34,6 @@ The web endpoints may change, and results depend on the NetEase catalog and the 
 
 ## Remove
 
-Turn off **网易云音乐** in **Lyrics providers** and **NetEase Cloud Music Lyrics** in **Plugins**. Remove the `neteaseLyrics` plugin directory, then scan for plugins again.
+Turn off **NetEase Cloud Music** in **Lyrics providers** and **NetEase Cloud Music Lyrics** in **Plugins**. Remove the `neteaseLyrics` plugin directory, then scan for plugins again.
 
 [MIT license](LICENSE)

@@ -22,7 +22,7 @@ git clone https://github.com/mijiaoqvq/dms-netease-lyrics.git "$plugin_dir"
 
 手动安装时，将 `plugin.json` 和 `fetch.py` 放进上述目录，并运行 `chmod +x "$plugin_dir/fetch.py"`。
 
-1. 打开 **设置 → 插件**，点击 **扫描**，启用「网易云音乐」。
+1. 打开 **设置 → 插件**，点击 **扫描**，启用「NetEase Cloud Music Lyrics（网易云音乐）」。
 2. 打开 **设置 → 声音与媒体 → 媒体播放器 → 歌词提供商**，开启「网易云音乐」。
 3. 拖动条目可调整优先级。切换歌曲后，DMS 会重新查询歌词。
 
@@ -34,6 +34,6 @@ git clone https://github.com/mijiaoqvq/dms-netease-lyrics.git "$plugin_dir"
 
 ## 卸载
 
-在 **歌词提供商** 和 **插件** 中关闭「网易云音乐」，删除 `neteaseLyrics` 插件目录，再扫描一次插件。
+在 **歌词提供商** 中关闭「网易云音乐」，在 **插件** 中关闭「NetEase Cloud Music Lyrics（网易云音乐）」。删除 `neteaseLyrics` 插件目录，再扫描一次插件。
 
 [MIT 许可证](LICENSE)

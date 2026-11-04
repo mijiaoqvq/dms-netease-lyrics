@@ -4,6 +4,8 @@
 
 Adds NetEase Cloud Music (网易云音乐) to the lyrics provider list in the built-in media player of [Dux Modular Shell](https://duxlabs.dev/). The plugin supplies line-synchronized lyrics and uses DMS's existing provider priority and cache.
 
+![NetEase Cloud Music enabled in the DMS lyrics provider list](docs/lyrics-providers.png)
+
 ## Requirements
 
 - DMS 2.0 or later. Tested on DMS 2.1.0.

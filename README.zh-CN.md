@@ -4,6 +4,8 @@
 
 为 [Dux Modular Shell（DMS）](https://duxlabs.dev/) 内置媒体播放器添加「网易云音乐」歌词来源。插件提供逐行同步歌词，使用 DMS 自带的优先级和缓存机制。
 
+![DMS 歌词提供方列表中的网易云音乐已启用](docs/lyrics-providers.png)
+
 ## 运行条件
 
 - DMS 2.0 或更新版本，已在 DMS 2.1.0 上验证。

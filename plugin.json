@@ -2,10 +2,12 @@
   "id": "neteaseLyrics",
   "name": "NetEase Cloud Music Lyrics",
   "description": "Adds line-synced lyrics from NetEase Cloud Music to the built-in DMS media player.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "mijiaoqvq",
   "type": "lyrics",
   "requires_dms": ">=2.0.0",
+  "settings": "./settings/Settings.qml",
+  "permissions": ["settings_read", "settings_write"],
   "lyrics": {
     "command": "./fetch.py",
     "name": "NetEase Cloud Music",

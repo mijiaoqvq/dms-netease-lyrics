@@ -9,7 +9,7 @@ Adds NetEase Cloud Music (网易云音乐) to the lyrics provider list in the bu
 ## Requirements
 
 - DMS 2.0 or later. Tested on DMS 2.1.0.
-- Python 3 available as `python3` in the DMS session. The plugin uses the Python standard library.
+- Python 3 available as `python3` in the DMS session. The plugin bundles a pure Python OpenCC converter; no additional packages are required.
 - Network access to `music.163.com`. No NetEase account is required.
 
 ## Install
@@ -20,7 +20,7 @@ mkdir -p "$(dirname "$plugin_dir")"
 git clone https://github.com/mijiaoqvq/dms-netease-lyrics.git "$plugin_dir"
 ```
 
-For a manual installation, copy `plugin.json` and `fetch.py` into that directory and run `chmod +x "$plugin_dir/fetch.py"`.
+For a manual installation, copy `plugin.json`, `fetch.py` and the `_vendor`, `settings` and `translations` directories into that directory and run `chmod +x "$plugin_dir/fetch.py"`.
 
 1. Open **Settings → Plugins**, click **Scan**, then enable **NetEase Cloud Music Lyrics**.
 2. Open **Settings → Sound & media → Media player → Lyrics providers** and turn on **NetEase Cloud Music**.
@@ -29,6 +29,8 @@ For a manual installation, copy `plugin.json` and `fetch.py` into that directory
 ## How matching works
 
 The plugin sends the track title and either the artist or album name to NetEase's web search endpoint. It checks the returned title, artist and, when available, duration locally. A matching song ID is used to request its original LRC lyrics. The plugin returns a miss if it cannot find a matching version with synchronized lyrics, so DMS can use another enabled source.
+
+The plugin uses OpenCC `t2s` for traditional/simplified Chinese matching; **Use simplified Chinese search terms** in the plugin settings is enabled by default and can be turned off to search with the original text.
 
 The web endpoints may change, and results depend on the NetEase catalog and the metadata supplied by the player.
 

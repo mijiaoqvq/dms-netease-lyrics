@@ -1,20 +1,42 @@
 #!/usr/bin/env python3
 
 import json
+import os
 import re
 import sys
 import unicodedata
+from pathlib import Path
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
+
+from _vendor.opencc import OpenCC
 
 
 BASE_URL = "https://music.163.com"
 LINE_TIMESTAMP = re.compile(r"^\[\d+:\d{2}(?:\.\d+)?\]", re.MULTILINE)
 ARTIST_SEPARATOR = re.compile(r"[,，、;；]|\s+(?:&|/|feat\.?)\s+", re.IGNORECASE)
+CHINESE_CONVERTER = OpenCC("t2s")
+
+
+def simplify_search_enabled():
+    config_home = os.environ.get("XDG_CONFIG_HOME") or Path.home() / ".config"
+    settings_path = Path(config_home) / "dms" / "plugin_settings.json"
+    try:
+        with settings_path.open(encoding="utf-8") as settings_file:
+            settings = json.load(settings_file)
+    except (OSError, ValueError):
+        return True
+    if not isinstance(settings, dict):
+        return True
+    plugin_settings = settings.get("neteaseLyrics")
+    if not isinstance(plugin_settings, dict):
+        return True
+    return plugin_settings.get("simplifySearch", True) is not False
 
 
 def normalized(value):
     value = unicodedata.normalize("NFKC", value).casefold()
+    value = CHINESE_CONVERTER.convert(value)
     return "".join(char for char in value if not char.isspace())
 
 
@@ -55,13 +77,17 @@ def fetch(track):
     if not title.strip() or not artist.strip():
         return None
 
+    simplify_search = simplify_search_enabled()
     # Album searches can surface originals that artist searches bury below covers.
     qualifiers = [artist]
     if album and normalized(album) != normalized(artist):
         qualifiers.insert(0, album)
     tried_ids = set()
     for qualifier in qualifiers:
-        result = request_json("api/search/get", type=1, limit=25, s=f"{title} {qualifier}")
+        query = f"{title} {qualifier}"
+        if simplify_search:
+            query = CHINESE_CONVERTER.convert(query)
+        result = request_json("api/search/get", type=1, limit=25, s=query)
         songs = (result.get("result") or {}).get("songs") or []
         song_id = find_song(songs, title, artist, album, duration)
         if song_id is None or song_id in tried_ids:
